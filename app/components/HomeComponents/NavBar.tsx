@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import React, { useState } from 'react'
-import icon from "../../public/logo.png"
+import icon from "../../../public/logo.png"
 import Link from 'next/link'
 
 export default function NavBar() {
