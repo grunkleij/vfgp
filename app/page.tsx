@@ -1,370 +1,707 @@
+"use client"
 import HeroSction from "./components/HomeComponents/HeroSction";
 import FeatureBar from "./components/HomeComponents/FeatureBar";
-import { CheckCircle2, ArrowRight, ChevronRight, Star, Feather, Headset, Settings2, UserCog } from "lucide-react";
+import {
+  CheckCircle2, ArrowRight, ChevronRight, Star, Feather,
+  Headset, Settings2, UserCog, Car, Shield, Cog,
+  Lightbulb, ShieldCheck, Clock, BarChart2, Award,
+  ChevronDown, ChevronUp, Mail, Phone, User, MessageSquare
+} from "lucide-react";
+import { useState } from "react";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 
-export default function Home() {
+// ─── Animation Variants ───────────────────────────────────────────────────────
+const fadeUp: Variants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+};
+
+const fadeRight: Variants = {
+  hidden: { opacity: 0, x: -40 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: "easeOut" } }
+};
+
+const fadeLeft: Variants = {
+  hidden: { opacity: 0, x: 40 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: "easeOut" } }
+};
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.15 }
+  }
+};
+
+// ─── FAQ Accordion ────────────────────────────────────────────────────────────
+function FAQItem({ question, answer }: { question: string; answer: string }) {
+  const [open, setOpen] = useState(false);
   return (
-    <main>
+    <div className="border-b border-gray-200 py-4">
+      <button
+        onClick={() => setOpen(!open)}
+        className="w-full flex items-center justify-between text-left gap-4"
+      >
+        <span className="font-bold text-[#1b2a52] text-sm md:text-base">{question}</span>
+        {open
+          ? <ChevronUp className="w-5 h-5 text-[#F27A22] shrink-0" />
+          : <ChevronDown className="w-5 h-5 text-[#F27A22] shrink-0" />}
+      </button>
+      <AnimatePresence>
+        {open && (
+          <motion.p
+            initial={{ height: 0, opacity: 0, marginTop: 0 }}
+            animate={{ height: "auto", opacity: 1, marginTop: 12 }}
+            exit={{ height: 0, opacity: 0, marginTop: 0 }}
+            className="text-gray-500 text-sm leading-relaxed overflow-hidden"
+          >
+            {answer}
+          </motion.p>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
+
+// ─── Page ─────────────────────────────────────────────────────────────────────
+export default function Home() {
+  const industries = [
+    { icon: Car,          label: "Automobile",           desc: "Lightweight FRP body panels for buses, trucks & commercial vehicles." },
+    { icon: Shield,       label: "Defence",              desc: "Blast-resistant composite components meeting defence specifications." },
+    { icon: Cog,          label: "Engineering Industries",desc: "Custom FRP solutions for heavy engineering & infrastructure sectors." },
+    { icon: Lightbulb,    label: "Creative Ideas",        desc: "Bespoke composite fabrication for unique design applications." },
+    { icon: ShieldCheck,  label: "Super Safety",          desc: "Safety-certified panels and enclosures for hazardous environments." },
+    { icon: Clock,        label: "24/7 Support",          desc: "Round-the-clock technical support and after-sales service." },
+  ];
+
+  const faqs = [
+    { question: "What are the advantages of FRP over traditional materials?", answer: "FRP composites offer superior strength-to-weight ratio, corrosion resistance, and design flexibility compared to steel or aluminium, making them ideal for automotive and industrial applications." },
+    { question: "What is the lead time for custom FRP composite manufacturing?", answer: "Lead times vary based on complexity and volume. Typically, tooling takes 2–4 weeks, followed by production. We work with clients to ensure timely delivery without compromising quality." },
+    { question: "What is the surface finish quality of your FRP products?", answer: "Our products are finished to Class A surface standards using vacuum infusion and controlled gel-coat techniques, ensuring smooth, paint-ready surfaces suitable for automotive exteriors." },
+    { question: "Can Venkateshwara FRP handle large-scale production runs?", answer: "Yes. Our automated production lines and vacuum resin infusion infrastructure are designed for both prototype and high-volume batch production to meet diverse client demands." },
+  ];
+
+  const testimonials = [
+    { name: "Rajesh Kumar",  role: "Sr. Procurement Manager, AutoCorp",     text: "The precision and durability of composite panels delivered by VFG have significantly improved our vehicle performance. An outstanding partner." },
+    { name: "Vishal R.",     role: "Project Lead, L&T Infrastructure",       text: "Their team's deep knowledge of FRP solutions and quick turnaround time helped us meet critical project deadlines without any compromise on quality." },
+    { name: "Col. Amit Singh", role: "Strategic Sourcing, Defence Division", text: "One of the most reliable FRP manufacturers in India. Their technical team is highly knowledgeable about defence-grade composite specifications." },
+  ];
+
+  return (
+    <main className="overflow-x-hidden">
       <HeroSction />
       <FeatureBar />
 
-      {/* --- OUR LEGACY SECTION --- */}
-      <section className="w-full bg-white py-20 lg:py-32">
-        <div className="max-w-[1280px] mx-auto px-6 md:px-12">
+      {/* ── ABOUT / LEGACY ─────────────────────────────────────────────── */}
+      <section className="w-full bg-white py-20 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-
-            <div className="relative mt-8 lg:mt-0">
-              <div className="absolute -top-6 -left-6 w-32 h-32 border-t-[3px] border-l-[3px] border-[#C47D34]" />
-
-              <img
-                src="/lab.png"
-                alt="Manufacturing Facility"
-                className="w-full h-auto rounded-lg shadow-md object-cover relative z-10"
-              />
-
-              <div className="absolute -bottom-8 lg:-bottom-12 right-4 lg:-right-10 bg-[#1b2a52] text-white p-8 rounded-xl shadow-xl z-20 flex flex-col items-center justify-center min-w-[220px]">
-                <span className="text-5xl font-black">#1</span>
-                <span className="text-xs font-bold tracking-wider uppercase mt-2">
-                  Composite Partner
-                </span>
-              </div>
-            </div>
-
-            <div className="flex flex-col pt-12 lg:pt-0">
-
-              <span className="text-[#C47D34] font-bold text-sm tracking-widest uppercase">
-                Our Legacy
-              </span>
-
-              <h2 className="text-4xl lg:text-[42px] font-black text-[#1b2a52] leading-[1.15] mt-4">
-                Engineering Composite Solutions for the Future
-              </h2>
-
-              <p className="mt-6 text-gray-500 text-base leading-relaxed">
-                We specialize in state-of-the-art FRP manufacturing, serving the
-                most demanding industries with lightweight, high-strength
-                composite materials. From custom tooling to mass production, our
-                facility in India is equipped to handle complex engineering
-                challenges.
-              </p>
-
-              <ul className="mt-8 space-y-4">
-                <li className="flex items-center gap-3">
-                  <CheckCircle2 className="w-6 h-6 text-[#C47D34] shrink-0" />
-                  <span className="font-bold text-[#1b2a52]">Advanced Vacuum Infusion Technology</span>
+          {/* Text */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={fadeRight}
+          >
+            <p className="text-gray-700 text-base leading-relaxed mb-4">
+              We are leading <span className="font-black text-[#F27A22]">manufacturers of FRP</span> in{" "}
+              <span className="font-black text-[#1b2a52]">Hyderabad – India.</span>
+            </p>
+            <p className="text-gray-500 text-sm leading-relaxed mb-8">
+              Venkateshwara Fibreglass Products is a unit set up for manufacturing FRP composites for Automobiles
+              and other Engineering Industrial applications. The unit has been promoted by dedicated, young and
+              technically experienced first-generation entrepreneurs. VFG is located at Plot No 6, R.I.E,
+              Zaheerabad — the heart of the Industrial hub of Zaheerabad.
+            </p>
+            <ul className="space-y-3 mb-8">
+              {["Advanced Vacuum Infusion Technology", "In-house R&D and Tooling Facility", "End-to-end Project Management"].map((item) => (
+                <li key={item} className="flex items-center gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-[#F27A22] shrink-0" />
+                  <span className="font-semibold text-[#1b2a52] text-sm">{item}</span>
                 </li>
-                <li className="flex items-center gap-3">
-                  <CheckCircle2 className="w-6 h-6 text-[#C47D34] shrink-0" />
-                  <span className="font-bold text-[#1b2a52]">In-house R&D and Tooling Facility</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <CheckCircle2 className="w-6 h-6 text-[#C47D34] shrink-0" />
-                  <span className="font-bold text-[#1b2a52]">End-to-end Project Management</span>
-                </li>
-              </ul>
+              ))}
+            </ul>
+            <motion.button 
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="bg-[#F27A22] text-white px-8 py-3 rounded font-bold text-sm hover:bg-[#c96414] transition-colors"
+            >
+              Read More
+            </motion.button>
+          </motion.div>
 
-              <div className="mt-10">
-                <button className="bg-[#283266] text-white px-8 py-3.5 rounded-md font-semibold flex items-center gap-2 hover:bg-[#1b2a52] transition-colors">
-                  Learn More
-                  <ArrowRight className="w-5 h-5" />
-                </button>
-              </div>
-
-            </div>
-
-          </div>
+          {/* Image */}
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={fadeLeft}
+            className="relative"
+          >
+            <div className="absolute -top-4 -left-4 w-24 h-24 border-t-[3px] border-l-[3px] border-[#F27A22]" />
+            <img src="/lab.png" alt="Manufacturing" className="w-full h-auto rounded-lg shadow-md object-cover relative z-10" />
+            <motion.div 
+              initial={{ scale: 0 }}
+              whileInView={{ scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.5, type: "spring", stiffness: 100 }}
+              className="absolute -bottom-8 -right-6 bg-[#1b2a52] text-white p-6 rounded-xl shadow-xl z-20 text-center min-w-45"
+            >
+              <span className="text-4xl font-black">#1</span>
+              <p className="text-[10px] font-bold tracking-widest uppercase mt-1">Composite Partner</p>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
-      <section className="w-full bg-white py-20">
-        <div className="max-w-[1280px] mx-auto px-6 md:px-12">
-
-          <div className="text-center mb-14">
-            <h2 className="text-4xl md:text-[44px] font-black text-[#1b2a52] tracking-wide">
-              Industries We Serve
-            </h2>
-            <div className="w-24 h-1.5 bg-[#F27A22] mx-auto mt-4 rounded-full" />
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-
-            <div className="relative h-[420px] rounded-xl overflow-hidden group">
-              <img src="/bus.png" alt="Automobile" className="absolute inset-0 w-full h-full object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#1b2a52] via-[#1b2a52]/80 to-transparent h-full" />
-
-              <div className="absolute bottom-0 left-0 right-0 p-8 text-center pb-12">
-                <h3 className="text-[28px] font-black text-[#F27A22] mb-3">Automobile</h3>
-                <p className="text-white text-base font-medium leading-tight px-4">
-                  Lightweight body panels for<br />high-performance vehicles.
-                </p>
-              </div>
-            </div>
-
-            <div className="relative h-[420px] rounded-xl overflow-hidden group">
-              <img src="/robot.png" alt="Automobile Factory" className="absolute inset-0 w-full h-full object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#1b2a52] via-[#1b2a52]/80 to-transparent h-full" />
-
-              <div className="absolute bottom-0 left-0 right-0 p-8 text-center pb-12">
-                <h3 className="text-[28px] font-black text-[#F27A22] mb-3">Automobile</h3>
-                <p className="text-white text-base font-medium leading-tight px-4">
-                  Lightweight body panels for<br />high-performance vehicles.
-                </p>
-              </div>
-            </div>
-
-            <div className="relative h-[420px] rounded-xl overflow-hidden group">
-              <img src="/bus2.png" alt="Defense Automobile" className="absolute inset-0 w-full h-full object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#1b2a52] via-[#1b2a52]/80 to-transparent h-full" />
-
-              <div className="absolute bottom-0 left-0 right-0 p-8 text-center pb-12">
-                <h3 className="text-[28px] font-black text-[#F27A22] mb-3">Automobile</h3>
-                <p className="text-white text-base font-medium leading-tight px-4">
-                  Lightweight body panels for<br />high-performance vehicles.
-                </p>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* --- FEATURED PRODUCTS SECTION --- */}
+      {/* ── INDUSTRIES WE SERVE ─────────────────────────────────────────── */}
       <section className="w-full bg-white py-20 border-t border-gray-100">
-        <div className="max-w-[1280px] mx-auto px-6 md:px-12">
-
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-4">
-            <div>
-              <h2 className="text-4xl lg:text-[42px] font-black text-[#1b2a52]">
-                Featured Products
-              </h2>
-              <p className="text-gray-500 text-base mt-2">
-                Precision molded FRP components for diverse applications
-              </p>
-            </div>
-
-            <a href="/catalog" className="text-[#C47D34] font-bold flex items-center gap-1 hover:text-[#F27A22] transition-colors pb-1">
-              View Catalog <ChevronRight className="w-5 h-5" />
-            </a>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-
-            <div className="bg-white rounded-xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
-              <div className="h-[250px] overflow-hidden bg-gray-50 flex items-center justify-center p-2">
-                <img src="/bus3.png" alt="Bus Body Parts" className="w-full h-full object-cover rounded-t-lg" />
-              </div>
-              <div className="p-6">
-                <h3 className="text-[22px] font-black text-[#1b2a52] mb-2">Bus Body Parts</h3>
-                <p className="text-[#C47D34] text-sm font-medium leading-relaxed pr-4">
-                  Precision-engineered FRP bus body for commercial vehicles.
-                </p>
-              </div>
-            </div>
-
-            <div className="bg-white rounded-xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
-              <div className="h-[250px] overflow-hidden bg-white flex items-center justify-center p-6">
-                <img src="/bodydouble.png" alt="Body Double" className="w-full h-full object-contain drop-shadow-md" />
-              </div>
-              <div className="p-6">
-                <h3 className="text-[22px] font-black text-[#1b2a52] mb-2">Body Double</h3>
-                <p className="text-[#C47D34] text-sm font-medium leading-relaxed pr-4">
-                  High-impact resistant front and rear bumper assemblies.
-                </p>
-              </div>
-            </div>
-
-            <div className="bg-white rounded-xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
-              <div className="h-[250px] overflow-hidden bg-gray-50 flex items-center justify-center">
-                <img src="/loadtestingbox.png" alt="Load Testing Box" className="w-full h-full object-cover" />
-              </div>
-              <div className="p-6">
-                <h3 className="text-[22px] font-black text-[#1b2a52] mb-2">Load Testing Box</h3>
-                <p className="text-[#C47D34] text-sm font-medium leading-relaxed pr-4">
-                  Lightweight insulating panels for modular enclosures.
-                </p>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-
-      {/* --- WHY CHOOSE US SECTION --- */}
-      <section className="w-full bg-white py-20">
-        <div className="max-w-[1280px] mx-auto px-6 md:px-12">
-
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-[42px] font-black text-[#1b2a52]">
-              Why Choose Us
+        <div className="max-w-7xl mx-auto px-6 md:px-12">
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={fadeUp}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl md:text-[38px] font-black text-[#1b2a52]">
+              <span className="italic text-[#F27A22]">Industries</span> We Serve{" "}
+              <span className="text-[#F27A22]">——</span>
             </h2>
-            <div className="w-16 h-1.5 bg-[#F27A22] mx-auto mt-4 rounded-full" />
-          </div>
+            <p className="text-gray-500 text-sm mt-3 max-w-xl mx-auto">
+              From automobiles to defence — our composite solutions power the industries that power India.
+            </p>
+          </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-            <div className="flex flex-col items-center text-center">
-              <div className="w-20 h-20 rounded-full border border-blue-100 bg-blue-50 flex items-center justify-center mb-6">
-                <Settings2 className="w-8 h-8 text-[#1b2a52]" />
-              </div>
-              <h3 className="text-xl font-bold text-[#1b2a52] mb-3">Advanced Infrastructure</h3>
-              <p className="text-gray-500 text-sm leading-relaxed px-4">
-                Automated production lines and vacuum resin infusion plants.
-              </p>
-            </div>
-
-            <div className="flex flex-col items-center text-center">
-              <div className="w-20 h-20 rounded-full border border-[#F27A22]/20 bg-orange-50 flex items-center justify-center mb-6">
-                <UserCog className="w-8 h-8 text-[#F27A22]" />
-              </div>
-              <h3 className="text-xl font-bold text-[#1b2a52] mb-3">Custom Engineering</h3>
-              <p className="text-gray-500 text-sm leading-relaxed px-4">
-                Automated production lines and vacuum resin infusion plants.
-              </p>
-            </div>
-
-            <div className="flex flex-col items-center text-center">
-              <div className="w-20 h-20 rounded-full border border-blue-100 bg-blue-50 flex items-center justify-center mb-6">
-                <Feather className="w-8 h-8 text-[#1b2a52]" />
-              </div>
-              <h3 className="text-xl font-bold text-[#1b2a52] mb-3">Lightweight Materials</h3>
-              <p className="text-gray-500 text-sm leading-relaxed px-4">
-                Automated production lines and vacuum resin infusion plants.
-              </p>
-            </div>
-
-            <div className="flex flex-col items-center text-center">
-              <div className="w-20 h-20 rounded-full border border-[#F27A22]/20 bg-orange-50 flex items-center justify-center mb-6">
-                <Headset className="w-8 h-8 text-[#F27A22]" />
-              </div>
-              <h3 className="text-xl font-bold text-[#1b2a52] mb-3">Reliable Support</h3>
-              <p className="text-gray-500 text-sm leading-relaxed px-4">
-                Automated production lines and vacuum resin infusion plants.
-              </p>
-            </div>
-          </div>
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={staggerContainer}
+            className="grid grid-cols-2 md:grid-cols-3 gap-6"
+          >
+            {industries.map(({ icon: Icon, label, desc }, i) => (
+              <motion.div 
+                key={i} 
+                variants={fadeUp}
+                className="flex gap-4 items-start p-5 border border-gray-100 rounded-xl hover:shadow-md transition-shadow"
+              >
+                <div className={`shrink-0 w-14 h-14 rounded-lg flex items-center justify-center ${i % 2 === 0 ? "bg-[#F27A22]" : "bg-[#1b2a52]"}`}>
+                  <Icon className="w-7 h-7 text-white" />
+                </div>
+                <div>
+                  <h3 className="font-black text-[#1b2a52] text-sm mb-1">{label}</h3>
+                  <p className="text-gray-500 text-xs leading-relaxed">{desc}</p>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
       </section>
 
-      {/* --- OUR MANUFACTURING PROCESS SECTION --- */}
-      <section className="w-full bg-white py-20">
-        <div className="max-w-[1280px] mx-auto px-6 md:px-12 text-center">
+      {/* ── OUR PRODUCTS ────────────────────────────────────────────────── */}
+      <section className="w-full bg-white py-20 border-t border-gray-100">
+        <div className="max-w-7xl mx-auto px-6 md:px-12">
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={fadeUp}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl md:text-[38px] font-black text-[#1b2a52]">
+              Our <span className="italic text-[#F27A22]">Products</span>{" "}
+              <span className="text-[#F27A22]">——</span>
+            </h2>
+            <p className="text-gray-500 text-sm mt-3 max-w-xl mx-auto">
+              Precision moulded FRP components that set new benchmarks in durability and finish.
+            </p>
+          </motion.div>
 
-          <h2 className="text-4xl md:text-[42px] font-black text-[#1b2a52] mb-3">
-            Our Manufacturing Process
-          </h2>
-          <p className="text-gray-500 mb-20 text-sm md:text-base">
-            How we turn concepts into high-performance composites
-          </p>
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={staggerContainer}
+            className="grid grid-cols-1 md:grid-cols-3 gap-8"
+          >
+            {[
+              { img: "/bus3.png",         title: "Bus Body Parts",    desc: "Precision-engineered FRP bus body for commercial vehicles." },
+              { img: "/bodydouble.png",   title: "Body Double",       desc: "High-impact resistant front and rear bumper assemblies." },
+              { img: "/loadtestingbox.png", title: "Load Testing Box", desc: "Lightweight insulating panels for modular enclosures." },
+            ].map(({ img, title, desc }) => (
+              <motion.div 
+                key={title} 
+                variants={fadeUp}
+                className="rounded-xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow bg-white"
+              >
+                <div className="h-55 overflow-hidden bg-gray-50 flex items-center justify-center">
+                  <motion.img 
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.3 }}
+                    src={img} 
+                    alt={title} 
+                    className="w-full h-full object-cover" 
+                  />
+                </div>
+                <div className="p-5">
+                  <h3 className="text-lg font-black text-[#1b2a52] mb-1">{title}</h3>
+                  <p className="text-[#F27A22] text-xs font-semibold">{desc}</p>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
 
-          {/* Timeline Container */}
-          <div className="relative">
-            <div className="hidden lg:block absolute top-10 left-[10%] right-[10%] h-[2px] bg-blue-100 -z-10" />
+          <motion.div 
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="flex justify-center mt-10 gap-3"
+          >
+            <button className="border border-gray-300 text-gray-500 px-5 py-2 rounded text-sm hover:border-[#F27A22] hover:text-[#F27A22] transition-colors">← Prev</button>
+            <button className="border border-gray-300 text-gray-500 px-5 py-2 rounded text-sm hover:border-[#F27A22] hover:text-[#F27A22] transition-colors">Next →</button>
+          </motion.div>
+        </div>
+      </section>
 
-            <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-4">
+      {/* ── WHY CHOOSE US — DARK ────────────────────────────────────────── */}
+      <section className="w-full bg-[#111827] py-24 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
 
+          {/* Left: Text + Progress Bars */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={fadeRight}
+          >
+            <h2 className="text-3xl md:text-[38px] font-black text-white mb-2">
+              Why choose <span className="italic text-[#F27A22]">us</span>{" "}
+              <span className="text-[#F27A22]">——</span>
+            </h2>
+            <p className="text-gray-400 text-sm leading-relaxed mb-8 max-w-sm">
+              We combine engineering excellence with advanced manufacturing infrastructure to deliver
+              FRP composites that exceed industry benchmarks.
+            </p>
+
+            {[
+              { label: "Quality Assurance",   val: 98 },
+              { label: "On-Time Delivery",    val: 94 },
+              { label: "Client Satisfaction", val: 97 },
+              { label: "R&D Investment",       val: 85 },
+            ].map(({ label, val }, i) => (
+              <div key={label} className="mb-5">
+                <div className="flex justify-between text-xs mb-1">
+                  <span className="text-gray-300 font-semibold">{label}</span>
+                  <span className="text-[#F27A22] font-bold">{val}%</span>
+                </div>
+                <div className="h-1.5 bg-gray-700 rounded-full overflow-hidden">
+                  <motion.div 
+                    initial={{ width: 0 }}
+                    whileInView={{ width: `${val}%` }}
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{ duration: 1, delay: i * 0.1, ease: "easeOut" }}
+                    className="h-full bg-[#F27A22] rounded-full" 
+                  />
+                </div>
+              </div>
+            ))}
+          </motion.div>
+
+          {/* Right: 2x2 Feature Boxes */}
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={staggerContainer}
+            className="grid grid-cols-2 gap-5"
+          >
+            {[
+              { icon: Settings2, label: "Advanced Infrastructure", desc: "Automated lines & vacuum resin infusion plants." },
+              { icon: BarChart2, label: "Business Growth",          desc: "Consistent expansion with marquee industry partners." },
+              { icon: Award,     label: "Zero-Defect Quality",      desc: "Rigorous QA at every stage of the process." },
+              { icon: UserCog,   label: "Custom Engineering",       desc: "Bespoke designs tailored to your specifications." },
+            ].map(({ icon: Icon, label, desc }, i) => (
+              <motion.div 
+                key={i} 
+                variants={fadeUp}
+                className="bg-[#1e293b] border border-gray-700 rounded-xl p-6 hover:border-[#F27A22] transition-colors"
+              >
+                <div className="w-11 h-11 bg-[#F27A22]/10 rounded-lg flex items-center justify-center mb-4">
+                  <Icon className="w-5 h-5 text-[#F27A22]" />
+                </div>
+                <h4 className="font-bold text-white text-sm mb-2">{label}</h4>
+                <p className="text-gray-400 text-xs leading-relaxed">{desc}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+
+        </div>
+      </section>
+
+      {/* ── OUR UNIQUE PRODUCT ──────────────────────────────────────────── */}
+      <section className="w-full bg-white py-20 border-b border-gray-100 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={fadeRight}
+          >
+            <h2 className="text-3xl md:text-[36px] font-black text-[#1b2a52] mb-2">
+              Our <span className="italic text-[#F27A22]">Unique Product</span>
+            </h2>
+            <div className="w-16 h-1 bg-[#F27A22] mb-6 rounded-full" />
+            <p className="text-gray-500 text-sm leading-relaxed mb-4">
+              Our flagship FRP composite enclosure sets a new standard for industrial applications.
+              Built using advanced vacuum infusion, it delivers unmatched structural integrity at
+              one-third the weight of conventional materials.
+            </p>
+            <p className="text-gray-500 text-sm leading-relaxed mb-8">
+              Short delivery windows, competitive pricing, and exceptional surface quality make this
+              a preferred choice across automotive and defence procurement channels.
+            </p>
+            <motion.button 
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="bg-[#1b2a52] text-white px-8 py-3 rounded font-bold text-sm hover:bg-[#F27A22] transition-colors"
+            >
+              Learn More
+            </motion.button>
+          </motion.div>
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={fadeLeft}
+            className="flex justify-center"
+          >
+            <img src="/loadtestingbox.png" alt="Unique Product" className="w-full max-w-md h-auto object-contain drop-shadow-xl" />
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ── FAQ + CONTACT FORM ──────────────────────────────────────────── */}
+      <section className="w-full py-0 overflow-hidden">
+        <div className="grid grid-cols-1 lg:grid-cols-2">
+
+          {/* Left: FAQ */}
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={fadeRight}
+            className="bg-white px-8 md:px-16 py-20"
+          >
+            <h2 className="text-3xl font-black text-[#1b2a52] mb-2">
+              Learn more from our{" "}
+              <span className="italic text-[#F27A22]">FAQ</span>
+            </h2>
+            <div className="w-12 h-1 bg-[#F27A22] mb-6 rounded-full" />
+            <p className="text-gray-500 text-sm mb-8 leading-relaxed">
+              Frequently asked questions about FRP composites, manufacturing timelines, and our capabilities.
+            </p>
+            <div className="divide-y divide-gray-200">
+              {faqs.map((faq) => (
+                <FAQItem key={faq.question} {...faq} />
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Right: Contact Form */}
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={fadeLeft}
+            className="bg-[#f8f9fb] px-8 md:px-16 py-20 border-l border-gray-100"
+          >
+            <h2 className="text-2xl font-black text-[#1b2a52] mb-2">Get In Touch</h2>
+            <div className="w-12 h-1 bg-[#F27A22] mb-6 rounded-full" />
+            <div className="space-y-4">
               {[
-                { num: "01", title: "CONCEPT", desc: "Requirement analysis and design modeling.", color: "border-[#C47D34]" },
-                { num: "02", title: "TOOLING", desc: "Precision mold fabrication using CNC tech.", color: "border-blue-200" },
-                { num: "03", title: "FABRICATION", desc: "Lamination and resin infusion process.", color: "border-blue-200" },
-                { num: "04", title: "TESTING", desc: "Rigorous QA and load-bearing tests.", color: "border-blue-200" },
-                { num: "05", title: "DELIVERY", desc: "Final finishing and global logistics.", color: "border-blue-200" }
-              ].map((step, index) => (
-                <div key={index} className="flex flex-col items-center">
-                  <div className={`w-20 h-20 bg-white rounded-full border-2 ${step.color} flex items-center justify-center mb-6 shadow-sm`}>
-                    <span className="text-2xl font-black text-[#1b2a52]">{step.num}</span>
+                { label: "Your Name",    icon: User,           type: "text",  placeholder: "John Doe" },
+                { label: "Your Email",   icon: Mail,           type: "email", placeholder: "you@email.com" },
+                { label: "Phone Number", icon: Phone,          type: "tel",   placeholder: "+91 98765 43210" },
+              ].map(({ label, icon: Icon, type, placeholder }) => (
+                <div key={label}>
+                  <label className="block text-xs font-bold text-gray-600 mb-1 uppercase tracking-wide">{label}</label>
+                  <div className="relative">
+                    <Icon className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                    <input
+                      type={type}
+                      placeholder={placeholder}
+                      className="w-full border border-gray-200 rounded-lg pl-9 pr-4 py-2.5 text-sm focus:outline-none focus:border-[#F27A22] bg-white transition-colors"
+                    />
                   </div>
-                  <h4 className="text-[13px] font-black tracking-widest text-[#1b2a52] mb-2 uppercase">
-                    {step.title}
-                  </h4>
-                  <p className="text-gray-500 text-sm px-2">
-                    {step.desc}
-                  </p>
                 </div>
               ))}
-
+              <div>
+                <label className="block text-xs font-bold text-gray-600 mb-1 uppercase tracking-wide">Message</label>
+                <div className="relative">
+                  <MessageSquare className="absolute left-3 top-3 w-4 h-4 text-gray-400" />
+                  <textarea
+                    rows={4}
+                    placeholder="Tell us about your project..."
+                    className="w-full border border-gray-200 rounded-lg pl-9 pr-4 py-2.5 text-sm focus:outline-none focus:border-[#F27A22] bg-white resize-none transition-colors"
+                  />
+                </div>
+              </div>
+              <motion.button 
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="w-full bg-[#F27A22] text-white py-3 rounded-lg font-bold text-sm hover:bg-[#c96414] transition-colors"
+              >
+                Send Message
+              </motion.button>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* --- TRUSTED INDUSTRIES & TESTIMONIALS --- */}
-      <section className="w-full bg-gray-50 pt-20 pb-48">
-        <div className="max-w-[1280px] mx-auto px-6 md:px-12">
+      {/* ── TESTIMONIALS — DARK ─────────────────────────────────────────── */}
+      <section className="w-full bg-[#111827] py-24">
+        <div className="max-w-7xl mx-auto px-6 md:px-12">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={fadeUp}
+          >
+            <h2 className="text-3xl md:text-[36px] font-black text-white text-center mb-2">
+              Clients say <span className="italic text-[#F27A22]">about us</span>{" "}
+              <span className="text-[#F27A22]">——</span>
+            </h2>
+            <p className="text-gray-400 text-sm text-center mb-12">
+              Trusted by leading OEMs and defence contractors across India
+            </p>
+          </motion.div>
 
-          <h2 className="text-3xl md:text-[36px] font-black text-[#1b2a52] text-center mb-12">
-            Trusted by Leading Industries
-          </h2>
-
-
-          <div className="flex flex-wrap justify-center items-center gap-6 md:gap-14 mb-20">
-            {['TATA MOTORS', 'DRDO', 'ASHOK LEYLAND', 'MAHINDRA', 'LARSEN & TOUBRO'].map((brand) => (
-              <span key={brand} className="text-lg md:text-2xl font-black text-[#A0A4B0] uppercase tracking-wider">
-                {brand}
-              </span>
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={staggerContainer}
+            className="grid grid-cols-1 md:grid-cols-3 gap-6"
+          >
+            {testimonials.map(({ name, role, text }) => (
+              <motion.div 
+                key={name} 
+                variants={fadeUp}
+                className="bg-[#1e293b] border border-gray-700 rounded-xl p-7 hover:border-gray-500 transition-colors"
+              >
+                <div className="flex gap-1 mb-4">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-4 h-4 fill-current text-[#F27A22]" />
+                  ))}
+                </div>
+                <p className="text-gray-300 text-sm leading-relaxed mb-6">"{text}"</p>
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 bg-[#F27A22]/20 rounded-full flex items-center justify-center">
+                    <User className="w-5 h-5 text-[#F27A22]" />
+                  </div>
+                  <div>
+                    <p className="text-white font-bold text-sm">{name}</p>
+                    <p className="text-gray-500 text-[11px] uppercase tracking-wide mt-0.5">{role}</p>
+                  </div>
+                </div>
+              </motion.div>
             ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ── FACTORY VIDEO GALLERY ────────────────────────────────────────── */}
+      <section className="w-full bg-white py-20">
+        <div className="max-w-7xl mx-auto px-6 md:px-12">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={fadeUp}
+          >
+            <h2 className="text-3xl font-black text-[#1b2a52] text-center mb-2">
+              Factory <span className="italic text-[#F27A22]">Video</span> gallery
+            </h2>
+            <div className="w-16 h-1 bg-[#F27A22] mx-auto mb-12 rounded-full" />
+          </motion.div>
+
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={staggerContainer}
+            className="grid grid-cols-1 md:grid-cols-3 gap-6"
+          >
+            {["/bus.png", "/robot.png", "/bus2.png"].map((src, i) => (
+              <motion.div 
+                key={i} 
+                variants={fadeUp}
+                className="relative rounded-xl overflow-hidden group cursor-pointer"
+              >
+                <img src={src} alt={`Gallery ${i + 1}`} className="w-full h-50 object-cover group-hover:scale-105 transition-transform duration-500" />
+                <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/50 transition-colors">
+                  <motion.div 
+                    whileHover={{ scale: 1.1 }}
+                    className="w-14 h-14 bg-[#F27A22] rounded-full flex items-center justify-center shadow-lg"
+                  >
+                    <svg className="w-6 h-6 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                  </motion.div>
+                </div>
+                {i === 1 && (
+                  <div className="absolute top-3 left-3 bg-[#F27A22] text-white text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wide">
+                    Painting Section
+                  </div>
+                )}
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ── OUR PROMOTERS ────────────────────────────────────────────────── */}
+      <section className="w-full bg-white py-20 border-t border-gray-100">
+        <motion.div 
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={fadeUp}
+          className="max-w-7xl mx-auto px-6 md:px-12 text-center"
+        >
+          <h2 className="text-3xl font-black text-[#1b2a52] mb-2">
+            Our <span className="italic text-[#F27A22]">Promoters</span>
+          </h2>
+          <div className="w-16 h-1 bg-[#F27A22] mx-auto mb-6 rounded-full" />
+          <p className="text-gray-500 text-sm mb-10 max-w-lg mx-auto">
+            Venkateshwara FRP is driven by first-generation entrepreneurs with deep technical expertise
+            in advanced composite manufacturing.
+          </p>
+          <div className="flex flex-wrap justify-center gap-6">
+            <motion.button 
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="bg-[#F27A22] text-white px-12 py-4 rounded font-black text-base hover:bg-[#c96414] transition-colors min-w-50"
+            >
+              Chandu CH
+            </motion.button>
+            <motion.button 
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="bg-[#F27A22] text-white px-12 py-4 rounded font-black text-base hover:bg-[#c96414] transition-colors min-w-50"
+            >
+              Sreenath RY
+            </motion.button>
           </div>
+        </motion.div>
+      </section>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {/* ── OUR CLIENTS ──────────────────────────────────────────────────── */}
+      <section className="w-full bg-gray-50 py-20">
+        <div className="max-w-7xl mx-auto px-6 md:px-12 text-center">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={fadeUp}
+          >
+            <h2 className="text-3xl font-black text-[#1b2a52] mb-2">
+              Our <span className="italic text-[#F27A22]">Clients</span>
+            </h2>
+            <div className="w-16 h-1 bg-[#F27A22] mx-auto mb-12 rounded-full" />
+          </motion.div>
+          
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={staggerContainer}
+            className="flex flex-wrap justify-center items-center gap-8 md:gap-16"
+          >
+            {["TATA MOTORS", "DRDO", "ASHOK LEYLAND", "MAHINDRA", "LARSEN & TOUBRO"].map((brand) => (
+              <motion.span 
+                key={brand} 
+                variants={fadeUp}
+                className="text-lg md:text-xl font-black text-[#b0b4bf] uppercase tracking-wider hover:text-[#1b2a52] transition-colors cursor-default"
+              >
+                {brand}
+              </motion.span>
+            ))}
+          </motion.div>
+        </div>
+      </section>
 
-            <div className="bg-white p-10 rounded-xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.05)] border border-gray-100">
-              <div className="flex gap-1 mb-6">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 fill-current text-[#C47D34]" />
-                ))}
-              </div>
-              <p className="text-gray-600 text-base leading-relaxed mb-8">
-                "The precision and durability of the composite panels delivered by FRP Solutions have significantly improved our vehicle performance."
-              </p>
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-blue-100 rounded-full" />
-                <div>
-                  <h4 className="font-bold text-[#1b2a52] text-sm">Rajesh Kumar</h4>
-                  <p className="text-xs font-bold text-gray-400 tracking-wide mt-1 uppercase">SR. PROCUREMENT MANAGER, AUTOCORP</p>
-                </div>
-              </div>
-            </div>
+      {/* ── MANUFACTURING PROCESS ────────────────────────────────────────── */}
+      <section className="w-full bg-white py-20 border-t border-gray-100">
+        <div className="max-w-7xl mx-auto px-6 md:px-12 text-center">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={fadeUp}
+          >
+            <h2 className="text-3xl md:text-[38px] font-black text-[#1b2a52] mb-2">
+              Our Manufacturing Process
+            </h2>
+            <p className="text-gray-500 text-sm mb-16">How we turn concepts into high-performance composites</p>
+          </motion.div>
 
-            <div className="bg-white p-10 rounded-xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.05)] border border-gray-100">
-              <div className="flex gap-1 mb-6">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 fill-current text-[#C47D34]" />
-                ))}
-              </div>
-              <p className="text-gray-600 text-base leading-relaxed mb-8">
-                "One of the most reliable FRP manufacturers in India. Their technical team is highly knowledgeable about defence specifications."
-              </p>
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-blue-100 rounded-full" />
-                <div>
-                  <h4 className="font-bold text-[#1b2a52] text-sm">Col. Amit Singh</h4>
-                  <p className="text-xs font-bold text-gray-400 tracking-wide mt-1 uppercase">STRATEGIC SOURCING, DEFENCE DIVISION</p>
-                </div>
-              </div>
-            </div>
-
+          <div className="relative">
+            <div className="hidden lg:block absolute top-10 left-[10%] right-[10%] h-0.5 bg-orange-100 -z-10" />
+            <motion.div 
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+              variants={staggerContainer}
+              className="grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-4"
+            >
+              {[
+                { num: "01", title: "CONCEPT",     desc: "Requirement analysis and design modeling." },
+                { num: "02", title: "TOOLING",     desc: "Precision mold fabrication using CNC tech." },
+                { num: "03", title: "FABRICATION", desc: "Lamination and resin infusion process." },
+                { num: "04", title: "TESTING",     desc: "Rigorous QA and load-bearing tests." },
+                { num: "05", title: "DELIVERY",    desc: "Final finishing and global logistics." },
+              ].map((step, i) => (
+                <motion.div key={i} variants={fadeUp} className="flex flex-col items-center">
+                  <div className={`w-20 h-20 bg-white rounded-full border-2 ${i === 0 ? "border-[#F27A22]" : "border-blue-200"} flex items-center justify-center mb-5 shadow-sm`}>
+                    <span className="text-2xl font-black text-[#1b2a52]">{step.num}</span>
+                  </div>
+                  <h4 className="text-xs font-black tracking-widest text-[#1b2a52] mb-2 uppercase">{step.title}</h4>
+                  <p className="text-gray-500 text-xs px-2">{step.desc}</p>
+                </motion.div>
+              ))}
+            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* --- OVERLAPPING CTA CARD --- */}
-      <section className="relative z-10 w-full max-w-[1000px] mx-auto px-6 -mt-32 mb-20">
-        <div className="bg-white rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.08)] p-12 md:p-16 text-center border border-gray-100">
-
-          <h2 className="text-3xl md:text-[42px] font-black text-[#1b2a52] mb-4 leading-tight">
+      {/* ── CTA ──────────────────────────────────────────────────────────── */}
+      <section className="w-full bg-[#1b2a52] py-20">
+        <motion.div 
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={fadeUp}
+          className="max-w-225 mx-auto px-6 text-center"
+        >
+          <h2 className="text-3xl md:text-[40px] font-black text-white mb-4 leading-tight">
             Looking for High Performance FRP Components?
           </h2>
-
-          <p className="text-gray-600 text-sm md:text-base max-w-2xl mx-auto mb-10">
-            Get in touch with our engineering team for custom quotes and technical feasibility studies for your project.
+          <p className="text-blue-200 text-sm md:text-base max-w-2xl mx-auto mb-10">
+            Get in touch with our engineering team for custom quotes and technical feasibility studies.
           </p>
-
-          <button className="bg-[#C47D34] text-white px-10 py-4 rounded-md font-bold text-lg hover:bg-[#a6682b] transition-colors shadow-lg shadow-[#C47D34]/30">
+          <motion.button 
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="bg-[#F27A22] text-white px-12 py-4 rounded font-bold text-base hover:bg-[#c96414] transition-colors shadow-lg shadow-black/20"
+          >
             Request a Quote
-          </button>
-
-        </div>
+          </motion.button>
+        </motion.div>
       </section>
     </main>
   );
 }
+

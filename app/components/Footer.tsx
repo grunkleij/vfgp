@@ -4,12 +4,12 @@ import { Share2, Mail, MapPin, Phone } from 'lucide-react';
 export default function Footer() {
   return (
     <footer className="w-full bg-[#2A2E5B] pt-20 pb-8">
-      <div className="max-w-[1280px] mx-auto px-6 md:px-12">
+      <div className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-8 mb-16">
           
           <div className="md:col-span-5 lg:col-span-6">
             <div className="flex items-center gap-3 mb-6">
-              <div className="bg-white p-1 w-[52px] h-[52px] flex items-center justify-center">
+              <div className="bg-white p-1 w-13 h-13 flex items-center justify-center">
                 <img 
                   src="/logo.png" 
                   alt="VF Logo" 
@@ -22,7 +22,7 @@ export default function Footer() {
               </h2>
             </div>
             
-            <p className="text-white text-base md:text-[17px] leading-relaxed mb-8 max-w-[420px]">
+            <p className="text-white text-base md:text-[17px] leading-relaxed mb-8 max-w-105">
               Providing the global industrial sector with superior fiber reinforced plastic solutions for 30 years.
             </p>
             

@@ -1,16 +1,17 @@
 import { Rocket, Eye, BadgeCheck, Gavel, Handshake, Lightbulb, Compass, Microscope, Sliders } from 'lucide-react'
 import React from 'react'
+import ClientsCarousel from '../components/AboutComponents/ClientsCarousel'
 
 export default function page() {
     return (
         <div>
-            <section className="relative h-[350px] md:h-[400px] w-full flex items-center justify-center">
+            <section className="relative h-87.5 md:h-100 w-full flex items-center justify-center">
                 <div
                     className="absolute inset-0 bg-cover bg-center"
                     style={{ backgroundImage: "url('about/about_hero.png')" }}
                 />
                 <div className="absolute inset-0 bg-[#1b2a52]/85" />
-                <div className="relative z-10 max-w-[1280px] mx-auto px-6 text-center">
+                <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
                     <h1 className="text-5xl md:text-[56px] font-black text-white mb-4 tracking-tight">
                         About Us
                     </h1>
@@ -23,7 +24,7 @@ export default function page() {
             </section>
 
             <section className="w-full bg-white py-20">
-                <div className="max-w-[1280px] mx-auto px-6 md:px-12">
+                <div className="max-w-7xl mx-auto px-6 md:px-12">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
                         <div className="w-full">
                             <img
@@ -63,7 +64,7 @@ export default function page() {
             </section>
 
             <section className="w-full bg-[#30335A] py-16">
-                <div className="max-w-[1280px] mx-auto px-6 md:px-12">
+                <div className="max-w-7xl mx-auto px-6 md:px-12">
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-10 md:gap-6 text-center">
 
                         <div className="flex flex-col items-center">
@@ -99,7 +100,7 @@ export default function page() {
             </section>
 
             <section className="w-full bg-white py-20">
-                <div className="max-w-[1280px] mx-auto px-6 md:px-12">
+                <div className="max-w-7xl mx-auto px-6 md:px-12">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <div className="bg-[#24242A] rounded-xl p-10 md:p-12">
                             <div className="w-14 h-14 bg-[#DCE8F5] rounded-xl flex items-center justify-center mb-8">
@@ -133,7 +134,7 @@ export default function page() {
             </section>
 
             <section className="w-full bg-white py-24">
-                <div className="max-w-[1280px] mx-auto px-6 md:px-12">
+                <div className="max-w-7xl mx-auto px-6 md:px-12">
 
                     <div className="text-center mb-20">
                         <h2 className="text-4xl md:text-[46px] font-black text-[#1b2a52] mb-6">
@@ -145,7 +146,7 @@ export default function page() {
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 text-center">
 
                         <div className="flex flex-col items-center">
-                            <div className="w-[88px] h-[88px] bg-[#282F5A] rounded-full flex items-center justify-center mb-6">
+                            <div className="w-22 h-22 bg-[#282F5A] rounded-full flex items-center justify-center mb-6">
                                 <BadgeCheck className="w-10 h-10 text-white" strokeWidth={1.5} />
                             </div>
                             <h3 className="text-[22px] font-bold text-[#1b2a52] mb-4">Quality</h3>
@@ -155,7 +156,7 @@ export default function page() {
                         </div>
 
                         <div className="flex flex-col items-center">
-                            <div className="w-[88px] h-[88px] bg-[#282F5A] rounded-full flex items-center justify-center mb-6">
+                            <div className="w-22 h-22 bg-[#282F5A] rounded-full flex items-center justify-center mb-6">
                                 <Gavel className="w-10 h-10 text-white" strokeWidth={1.5} />
                             </div>
                             <h3 className="text-[22px] font-bold text-[#1b2a52] mb-4">Integrity</h3>
@@ -165,7 +166,7 @@ export default function page() {
                         </div>
 
                         <div className="flex flex-col items-center">
-                            <div className="w-[88px] h-[88px] bg-[#282F5A] rounded-full flex items-center justify-center mb-6">
+                            <div className="w-22 h-22 bg-[#282F5A] rounded-full flex items-center justify-center mb-6">
                                 <Lightbulb className="w-10 h-10 text-white" strokeWidth={1.5} />
                             </div>
                             <h3 className="text-[22px] font-bold text-[#1b2a52] mb-4">Innovation</h3>
@@ -175,7 +176,7 @@ export default function page() {
                         </div>
 
                         <div className="flex flex-col items-center">
-                            <div className="w-[88px] h-[88px] bg-[#282F5A] rounded-full flex items-center justify-center mb-6">
+                            <div className="w-22 h-22 bg-[#282F5A] rounded-full flex items-center justify-center mb-6">
                                 <Handshake className="w-10 h-10 text-white" strokeWidth={1.5} />
                             </div>
                             <h3 className="text-[22px] font-bold text-[#1b2a52] mb-4">Commitment</h3>
@@ -189,7 +190,7 @@ export default function page() {
             </section>
 
             <section className="w-full bg-white py-20">
-                <div className="max-w-[1280px] mx-auto px-6 md:px-12">
+                <div className="max-w-7xl mx-auto px-6 md:px-12">
 
                     <div className="text-center mb-16">
                         <h2 className="text-4xl md:text-[42px] font-black text-[#1b2a52] mb-4">
@@ -199,7 +200,7 @@ export default function page() {
                     </div>
 
                     <div className="flex flex-col items-center justify-center text-center">
-                        <div className="w-[280px] h-[340px] rounded-2xl overflow-hidden mb-6">
+                        <div className="w-70 h-85 rounded-2xl overflow-hidden mb-6">
                             <img
                                 src="/about/chandu_ch.png"
                                 alt="Chandu CH"
@@ -218,17 +219,17 @@ export default function page() {
             </section>
 
             <section className="w-full bg-white py-20">
-                <div className="max-w-[1280px] mx-auto px-6 md:px-12">
+                <div className="max-w-7xl mx-auto px-6 md:px-12">
 
                     <div className="flex flex-col lg:flex-row bg-[#2A2E5B] rounded-2xl overflow-hidden shadow-2xl">
-                        <div className="lg:w-[55%] min-h-[350px] lg:min-h-full relative">
+                        <div className="lg:w-[55%] min-h-87.5 lg:min-h-full relative">
                             <img
                                 src="/about/production.jpg"
                                 alt="State-of-the-Art Production"
                                 className="absolute inset-0 w-full h-full object-cover"
                             />
                         </div>
-                        <div className="lg:w-[45%] p-10 lg:p-14 border-l-0 lg:border-l-[10px] border-t-[10px] lg:border-t-0 border-[#C47D34] flex flex-col justify-center">
+                        <div className="lg:w-[45%] p-10 lg:p-14 border-l-0 lg:border-l-10 border-t-10 lg:border-t-0 border-[#C47D34] flex flex-col justify-center">
 
                             <h2 className="text-3xl md:text-[42px] font-black text-[#D98C21] mb-6 leading-tight">
                                 State-of-the-Art<br />
@@ -268,8 +269,11 @@ export default function page() {
                 </div>
             </section>
 
+            <ClientsCarousel />
+
+
             <section className="w-full bg-[#DCE8F6] py-20">
-                <div className="max-w-[1280px] mx-auto px-6 md:px-12 text-center">
+                <div className="max-w-7xl mx-auto px-6 md:px-12 text-center">
 
                     <h2 className="text-3xl md:text-[42px] font-black text-[#282F5A] mb-6">
                         Partner with us for advanced composite manufacturing
@@ -291,6 +295,9 @@ export default function page() {
 
                 </div>
             </section>
+
+
         </div>
     )
 }
+

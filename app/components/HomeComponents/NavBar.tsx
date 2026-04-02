@@ -13,7 +13,7 @@ export default function NavBar() {
         <nav className='flex justify-between items-center px-3 sm:px-6 lg:px-12 py-4 relative'>
 
             <div className='flex gap-2 items-center'>
-                <Image src={icon} alt="logo" className='w-[36px] h-[35px] sm:w-[42px] sm:h-[41px]' />
+                <Image src={icon} alt="logo" className='w-9 h-8.75 sm:w-10.5 sm:h-10.25' />
                 
                 <h1 className='text-[12px] sm:text-[16px] md:text-[18px] leading-tight font-extrabold uppercase text-[#282967]'>
                     Venkateshwara <br /> Fibreglass Products
@@ -22,7 +22,7 @@ export default function NavBar() {
 
             <ul className='hidden md:flex gap-6 lg:gap-10 items-center text-[#282967] font-semibold text-sm lg:text-base'>
                 <li><Link href="/">Home</Link></li>
-                <li><Link href="/">About Us</Link></li>
+                <li><Link href="/about_us">About Us</Link></li>
                 <li><Link href="/">Products</Link></li>
                 <li><Link href="/">Facilities</Link></li>
                 <li><Link href="/">Contact</Link></li>
