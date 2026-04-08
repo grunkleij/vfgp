@@ -26,7 +26,7 @@ export default function NavBar() {
                 <li><Link href="/about_us">About Us</Link></li>
                 <li><Link href="/product">Products</Link></li>
                 <li><Link href={industriesHref}>Industries</Link></li>
-                <li><Link href="/contact">Contact</Link></li>
+                {/* <li><Link href="/contact">Contact</Link></li> */}
             </ul>
 
             <div className='hidden lg:flex bg-[#282967] rounded-md text-white px-4 py-2 text-sm lg:text-base'>
