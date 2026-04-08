@@ -44,7 +44,7 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
         onClick={() => setOpen(!open)}
         className="w-full flex items-center justify-between text-left gap-4"
       >
-        <span className="font-bold text-[#1b2a52] text-sm md:text-base">{question}</span>
+        <span className="font-bold text-[#1b2a52] text-base md:text-lg">{question}</span>
         {open ? <ChevronUp className="w-5 h-5 text-[#F27A22] shrink-0" /> : <ChevronDown className="w-5 h-5 text-gray-400 shrink-0" />}
       </button>
       <AnimatePresence>
@@ -54,7 +54,7 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
             animate={{ height: "auto", opacity: 1, marginTop: 12 }}
             exit={{ height: 0, opacity: 0, marginTop: 0 }}
             transition={{ duration: 0.25 }}
-            className="overflow-hidden text-gray-500 text-sm leading-relaxed pr-8"
+            className="overflow-hidden text-gray-500 text-base leading-relaxed pr-8"
           >
             {answer}
           </motion.p>
@@ -67,12 +67,12 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
 // ─── Page ─────────────────────────────────────────────────────────────────────
 export default function Home() {
   const industries = [
-    { icon: Car,          label: "Automobile",           desc: "Lightweight FRP body panels for buses, trucks & commercial vehicles." },
-    { icon: Shield,       label: "Defence",              desc: "Blast-resistant composite components meeting defence specifications." },
-    { icon: Cog,          label: "Engineering Industries",desc: "Custom FRP solutions for heavy engineering & infrastructure sectors." },
-    { icon: Lightbulb,    label: "Creative Ideas",        desc: "Bespoke composite fabrication for unique design applications." },
-    { icon: ShieldCheck,  label: "Super Safety",          desc: "Safety-certified panels and enclosures for hazardous environments." },
-    { icon: Clock,        label: "24/7 Support",          desc: "Round-the-clock technical support and after-sales service." },
+    { icon: Car,          label: "Automobile",             desc: "Lightweight FRP body panels for buses, trucks & commercial vehicles." },
+    { icon: Shield,       label: "Defence",                desc: "Blast-resistant composite components meeting defence specifications." },
+    { icon: Cog,          label: "Engineering Industries", desc: "Custom FRP solutions for heavy engineering & infrastructure sectors." },
+    { icon: Lightbulb,    label: "Creative Ideas",         desc: "Bespoke composite fabrication for unique design applications." },
+    { icon: ShieldCheck,  label: "Super Safety",           desc: "Safety-certified panels and enclosures for hazardous environments." },
+    { icon: Clock,        label: "24/7 Support",           desc: "Round-the-clock technical support and after-sales service." },
   ];
 
   const faqs = [
@@ -83,9 +83,21 @@ export default function Home() {
   ];
 
   const testimonials = [
-    { name: "Rajesh Kumar",  role: "Sr. Procurement Manager, AutoCorp",     text: "The precision and durability of composite panels delivered by VFG have significantly improved our vehicle performance. An outstanding partner." },
+    { name: "Rajesh Kumar",  role: "Sr. Procurement Manager, AutoCorp",      text: "The precision and durability of composite panels delivered by VFG have significantly improved our vehicle performance. An outstanding partner." },
     { name: "Vishal R.",     role: "Project Lead, L&T Infrastructure",       text: "Their team's deep knowledge of FRP solutions and quick turnaround time helped us meet critical project deadlines without any compromise on quality." },
     { name: "Col. Amit Singh", role: "Strategic Sourcing, Defence Division", text: "One of the most reliable FRP manufacturers in India. Their technical team is highly knowledgeable about defence-grade composite specifications." },
+  ];
+
+  // Extended list for seamless marquee loop
+  const clientsList = [
+    { src: "/clients/ashokleyland.png", alt: "Ashok Leyland" },
+    { src: "/clients/mungi.png", alt: "Mungi" },
+    { src: "/clients/navistar.png", alt: "Mahindra Navistar" },
+    { src: "/clients/rise.png", alt: "Mahindra Rise" },
+    { src: "/clients/ashokleyland.png", alt: "Ashok Leyland 2" },
+    { src: "/clients/mungi.png", alt: "Mungi 2" },
+    { src: "/clients/navistar.png", alt: "Mahindra Navistar 2" },
+    { src: "/clients/rise.png", alt: "Mahindra Rise 2" },
   ];
 
   return (
@@ -108,7 +120,7 @@ export default function Home() {
               We are leading <span className="text-[#F27A22]">manufacturers of FRP</span> in{" "}
               <span className="text-[#1b2a52]">Hyderabad – India.</span>
             </h2>
-            <p className="text-gray-500 text-sm leading-relaxed mb-8">
+            <p className="text-gray-500 text-base leading-relaxed mb-8">
               Venkateshwara Fibreglass Products is a unit set up for manufacturing FRP composites for Automobiles
               and other Engineering Industrial applications. The unit has been promoted by dedicated, young and
               technically experienced first-generation entrepreneurs. VFG is located at Plot No 6, R.I.E,
@@ -118,14 +130,14 @@ export default function Home() {
               {["Advanced Vacuum Infusion Technology", "In-house R&D and Tooling Facility", "End-to-end Project Management"].map((item) => (
                 <li key={item} className="flex items-center gap-3">
                   <CheckCircle2 className="w-5 h-5 text-[#F27A22] shrink-0" />
-                  <span className="font-semibold text-[#1b2a52] text-sm">{item}</span>
+                  <span className="font-semibold text-[#1b2a52] text-base">{item}</span>
                 </li>
               ))}
             </ul>
             <motion.button 
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="bg-[#F27A22] text-white px-8 py-3 rounded font-bold text-sm hover:bg-[#c96414] transition-colors"
+              className="bg-[#F27A22] text-white px-8 py-3 rounded font-bold text-base hover:bg-[#c96414] transition-colors"
             >
               Read More
             </motion.button>
@@ -149,14 +161,14 @@ export default function Home() {
               className="absolute -bottom-8 -right-6 bg-[#1b2a52] text-white p-6 rounded-xl shadow-xl z-20 text-center min-w-45"
             >
               <span className="text-4xl font-black">#1</span>
-              <p className="text-[10px] font-bold tracking-widest uppercase mt-1">Composite Partner</p>
+              <p className="text-sm font-bold tracking-widest uppercase mt-1">Composite Partner</p>
             </motion.div>
           </motion.div>
         </div>
       </section>
 
       {/* ── INDUSTRIES WE SERVE ─────────────────────────────────────────── */}
-      <section className="w-full bg-white py-20 border-t border-gray-100">
+      <section className="w-full bg-slate-50 py-20 border-t border-gray-100">
         <div className="max-w-7xl mx-auto px-6 md:px-12">
           <motion.div 
             initial="hidden"
@@ -169,7 +181,7 @@ export default function Home() {
               <span className="italic text-[#F27A22]">Industries</span> We Serve{" "}
               <span className="text-[#F27A22]">——</span>
             </h2>
-            <p className="text-gray-500 text-sm mt-3 max-w-xl mx-auto">
+            <p className="text-gray-500 text-base mt-3 max-w-xl mx-auto">
               From automobiles to defence — our composite solutions power the industries that power India.
             </p>
           </motion.div>
@@ -185,14 +197,14 @@ export default function Home() {
               <motion.div 
                 key={i} 
                 variants={fadeUp}
-                className="flex gap-4 items-start p-5 border border-gray-100 rounded-xl hover:shadow-md transition-shadow"
+                className="flex gap-4 items-start p-5 border border-gray-200 bg-white rounded-xl hover:shadow-md transition-shadow"
               >
                 <div className={`shrink-0 w-14 h-14 rounded-lg flex items-center justify-center ${i % 2 === 0 ? "bg-[#F27A22]" : "bg-[#1b2a52]"}`}>
                   <Icon className="w-7 h-7 text-white" />
                 </div>
                 <div>
-                  <h3 className="font-black text-[#1b2a52] text-sm mb-1">{label}</h3>
-                  <p className="text-gray-500 text-xs leading-relaxed">{desc}</p>
+                  <h3 className="font-black text-[#1b2a52] text-base md:text-lg mb-1">{label}</h3>
+                  <p className="text-gray-500 text-sm md:text-base leading-relaxed">{desc}</p>
                 </div>
               </motion.div>
             ))}
@@ -247,7 +259,7 @@ export default function Home() {
                 </div>
                 <div className="p-6">
                   <h3 className="text-xl md:text-[22px] font-black text-[#1b2a52] mb-2 leading-tight">{title}</h3>
-                  <p className="text-[#F27A22] text-sm md:text-[15px] font-semibold leading-relaxed">{desc}</p>
+                  <p className="text-[#F27A22] text-base md:text-lg font-semibold leading-relaxed">{desc}</p>
                 </div>
               </motion.div>
             ))}
@@ -270,7 +282,7 @@ export default function Home() {
               Why choose <span className="italic text-[#F27A22]">us</span>{" "}
               <span className="text-[#F27A22]">——</span>
             </h2>
-            <p className="text-gray-400 text-sm leading-relaxed mb-8 max-w-sm">
+            <p className="text-gray-400 text-base leading-relaxed mb-8 max-w-sm">
               We combine engineering excellence with advanced manufacturing infrastructure to deliver
               FRP composites that exceed industry benchmarks.
             </p>
@@ -282,7 +294,7 @@ export default function Home() {
               { label: "R&D Investment",       val: 85 },
             ].map(({ label, val }, i) => (
               <div key={label} className="mb-5">
-                <div className="flex justify-between text-xs mb-1">
+                <div className="flex justify-between text-sm mb-1">
                   <span className="text-gray-300 font-semibold">{label}</span>
                   <span className="text-[#F27A22] font-bold">{val}%</span>
                 </div>
@@ -321,8 +333,8 @@ export default function Home() {
                 <div className="w-11 h-11 bg-[#F27A22]/10 rounded-lg flex items-center justify-center mb-4">
                   <Icon className="w-5 h-5 text-[#F27A22]" />
                 </div>
-                <h4 className="font-bold text-white text-sm mb-2">{label}</h4>
-                <p className="text-gray-400 text-xs leading-relaxed">{desc}</p>
+                <h4 className="font-bold text-white text-base mb-2">{label}</h4>
+                <p className="text-gray-400 text-sm leading-relaxed">{desc}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -331,7 +343,7 @@ export default function Home() {
       </section>
 
       {/* ── OUR UNIQUE PRODUCT ──────────────────────────────────────────── */}
-      <section className="w-full bg-white py-20 border-b border-gray-100 overflow-hidden">
+      <section className="w-full bg-slate-50 py-20 border-b border-gray-100 overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <motion.div
             initial="hidden"
@@ -343,19 +355,19 @@ export default function Home() {
               Our <span className="italic text-[#F27A22]">Unique Product</span>
             </h2>
             <div className="w-16 h-1 bg-[#F27A22] mb-6 rounded-full" />
-            <p className="text-gray-500 text-sm leading-relaxed mb-4">
+            <p className="text-gray-500 text-base leading-relaxed mb-4">
               Our flagship FRP composite enclosure sets a new standard for industrial applications.
               Built using advanced vacuum infusion, it delivers unmatched structural integrity at
               one-third the weight of conventional materials.
             </p>
-            <p className="text-gray-500 text-sm leading-relaxed mb-8">
+            <p className="text-gray-500 text-base leading-relaxed mb-8">
               Short delivery windows, competitive pricing, and exceptional surface quality make this
               a preferred choice across automotive and defence procurement channels.
             </p>
             <motion.button 
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="bg-[#1b2a52] text-white px-8 py-3 rounded font-bold text-sm hover:bg-[#F27A22] transition-colors"
+              className="bg-[#1b2a52] text-white px-8 py-3 rounded font-bold text-base hover:bg-[#F27A22] transition-colors"
             >
               Learn More
             </motion.button>
@@ -389,7 +401,7 @@ export default function Home() {
               <span className="italic text-[#F27A22]">FAQ</span>
             </h2>
             <div className="w-12 h-1 bg-[#F27A22] mb-6 rounded-full" />
-            <p className="text-gray-500 text-sm mb-8 leading-relaxed">
+            <p className="text-gray-500 text-base mb-8 leading-relaxed">
               Frequently asked questions about FRP composites, manufacturing timelines, and our capabilities.
             </p>
             <div className="divide-y divide-gray-200">
@@ -411,37 +423,37 @@ export default function Home() {
             <div className="w-12 h-1 bg-[#F27A22] mb-6 rounded-full" />
             <div className="space-y-4">
               {[
-                { label: "Your Name",    icon: User,           type: "text",  placeholder: "John Doe" },
-                { label: "Your Email",   icon: Mail,           type: "email", placeholder: "you@email.com" },
-                { label: "Phone Number", icon: Phone,          type: "tel",   placeholder: "+91 98765 43210" },
+                { label: "Your Name",    icon: User,          type: "text",  placeholder: "John Doe" },
+                { label: "Your Email",   icon: Mail,          type: "email", placeholder: "you@email.com" },
+                { label: "Phone Number", icon: Phone,         type: "tel",   placeholder: "+91 98765 43210" },
               ].map(({ label, icon: Icon, type, placeholder }) => (
                 <div key={label}>
-                  <label className="block text-xs font-bold text-gray-600 mb-1 uppercase tracking-wide">{label}</label>
+                  <label className="block text-sm font-bold text-gray-600 mb-1 uppercase tracking-wide">{label}</label>
                   <div className="relative">
                     <Icon className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
                     <input
                       type={type}
                       placeholder={placeholder}
-                      className="w-full border border-gray-200 rounded-lg pl-9 pr-4 py-2.5 text-sm focus:outline-none focus:border-[#F27A22] bg-white transition-colors"
+                      className="w-full border border-gray-200 rounded-lg pl-9 pr-4 py-2.5 text-base focus:outline-none focus:border-[#F27A22] bg-white transition-colors"
                     />
                   </div>
                 </div>
               ))}
               <div>
-                <label className="block text-xs font-bold text-gray-600 mb-1 uppercase tracking-wide">Message</label>
+                <label className="block text-sm font-bold text-gray-600 mb-1 uppercase tracking-wide">Message</label>
                 <div className="relative">
                   <MessageSquare className="absolute left-3 top-3 w-4 h-4 text-gray-400" />
                   <textarea
                     rows={4}
                     placeholder="Tell us about your project..."
-                    className="w-full border border-gray-200 rounded-lg pl-9 pr-4 py-2.5 text-sm focus:outline-none focus:border-[#F27A22] bg-white resize-none transition-colors"
+                    className="w-full border border-gray-200 rounded-lg pl-9 pr-4 py-2.5 text-base focus:outline-none focus:border-[#F27A22] bg-white resize-none transition-colors"
                   />
                 </div>
               </div>
               <motion.button 
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="w-full bg-[#F27A22] text-white py-3 rounded-lg font-bold text-sm hover:bg-[#c96414] transition-colors"
+                className="w-full bg-[#F27A22] text-white py-3 rounded-lg font-bold text-base hover:bg-[#c96414] transition-colors"
               >
                 Send Message
               </motion.button>
@@ -463,7 +475,7 @@ export default function Home() {
               Clients say <span className="italic text-[#F27A22]">about us</span>{" "}
               <span className="text-[#F27A22]">——</span>
             </h2>
-            <p className="text-gray-400 text-sm text-center mb-12">
+            <p className="text-gray-400 text-base text-center mb-12">
               Trusted by leading OEMs and defence contractors across India
             </p>
           </motion.div>
@@ -486,14 +498,14 @@ export default function Home() {
                     <Star key={i} className="w-4 h-4 fill-current text-[#F27A22]" />
                   ))}
                 </div>
-                <p className="text-gray-300 text-sm leading-relaxed mb-6">"{text}"</p>
+                <p className="text-gray-300 text-base leading-relaxed mb-6">"{text}"</p>
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 bg-[#F27A22]/20 rounded-full flex items-center justify-center">
                     <User className="w-5 h-5 text-[#F27A22]" />
                   </div>
                   <div>
-                    <p className="text-white font-bold text-sm">{name}</p>
-                    <p className="text-gray-500 text-[11px] uppercase tracking-wide mt-0.5">{role}</p>
+                    <p className="text-white font-bold text-base">{name}</p>
+                    <p className="text-gray-500 text-sm uppercase tracking-wide mt-0.5">{role}</p>
                   </div>
                 </div>
               </motion.div>
@@ -503,7 +515,7 @@ export default function Home() {
       </section>
 
       {/* ── FACTORY VIDEO GALLERY ────────────────────────────────────────── */}
-      <section className="w-full bg-white py-20">
+      <section className="w-full bg-white py-20 border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-6 md:px-12">
           <motion.div
             initial="hidden"
@@ -528,7 +540,7 @@ export default function Home() {
               <motion.div 
                 key={i} 
                 variants={fadeUp}
-                className="relative rounded-xl overflow-hidden group cursor-pointer"
+                className="relative rounded-xl overflow-hidden group cursor-pointer border border-gray-200 bg-white"
               >
                 <img src={src} alt={`Gallery ${i + 1}`} className="w-full h-50 object-cover group-hover:scale-105 transition-transform duration-500" />
                 <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/50 transition-colors">
@@ -542,7 +554,7 @@ export default function Home() {
                   </motion.div>
                 </div>
                 {i === 1 && (
-                  <div className="absolute top-3 left-3 bg-[#F27A22] text-white text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wide">
+                  <div className="absolute top-3 left-3 bg-[#F27A22] text-white text-sm font-bold px-2 py-1 rounded uppercase tracking-wide">
                     Painting Section
                   </div>
                 )}
@@ -552,45 +564,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── OUR PROMOTERS ────────────────────────────────────────────────── */}
-      <section className="w-full bg-white py-20 border-t border-gray-100">
-        <motion.div 
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={fadeUp}
-          className="max-w-7xl mx-auto px-6 md:px-12 text-center"
-        >
-          <h2 className="text-3xl font-black text-[#1b2a52] mb-2">
-            Our <span className="italic text-[#F27A22]">Promoters</span>
-          </h2>
-          <div className="w-16 h-1 bg-[#F27A22] mx-auto mb-6 rounded-full" />
-          <p className="text-gray-500 text-sm mb-10 max-w-lg mx-auto">
-            Venkateshwara FRP is driven by first-generation entrepreneurs with deep technical expertise
-            in advanced composite manufacturing.
-          </p>
-          <div className="flex flex-wrap justify-center gap-6">
-            <motion.button 
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-[#F27A22] text-white px-12 py-4 rounded font-black text-base hover:bg-[#c96414] transition-colors min-w-50"
-            >
-              Chandu CH
-            </motion.button>
-            <motion.button 
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-[#F27A22] text-white px-12 py-4 rounded font-black text-base hover:bg-[#c96414] transition-colors min-w-50"
-            >
-              Sreenath RY
-            </motion.button>
-          </div>
-        </motion.div>
-      </section>
-
-      {/* ── OUR CLIENTS ──────────────────────────────────────────────────── */}
-      <section className="w-full bg-gray-50 py-20">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 text-center">
+      {/* ── OUR CLIENTS (Animated Marquee & Full Color) ──────────────────────────────────────────────────── */}
+      <section className="w-full bg-slate-50 py-20 overflow-hidden relative border-t border-gray-100">
+        <div className="max-w-7xl mx-auto px-6 md:px-12 text-center mb-12">
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -600,35 +576,55 @@ export default function Home() {
             <h2 className="text-3xl font-black text-[#1b2a52] mb-2">
               Our <span className="italic text-[#F27A22]">Clients</span>
             </h2>
-            <div className="w-16 h-1 bg-[#F27A22] mx-auto mb-12 rounded-full" />
+            <div className="w-16 h-1 bg-[#F27A22] mx-auto rounded-full" />
           </motion.div>
-          
+        </div>
+        
+        {/* Infinite Marquee Container */}
+        <div className="relative flex overflow-x-hidden group">
+          {/* Fading Edges for smooth entry/exit effect */}
+          <div className="absolute top-0 bottom-0 left-0 w-16 md:w-32 bg-gradient-to-r from-slate-50 to-transparent z-10 pointer-events-none" />
+          <div className="absolute top-0 bottom-0 right-0 w-16 md:w-32 bg-gradient-to-l from-slate-50 to-transparent z-10 pointer-events-none" />
+
+          {/* Render 2 identical motion divs side-by-side to create a seamless loop */}
           <motion.div 
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={staggerContainer}
-            className="grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-8"
+            className="flex items-center gap-6 md:gap-10 pr-6 md:pr-10 w-max"
+            animate={{ x: ["0%", "-100%"] }}
+            transition={{ ease: "linear", duration: 25, repeat: Infinity }}
           >
-            {[
-              { src: "/clients/ashokleyland.png", alt: "Ashok Leyland" },
-              { src: "/clients/mungi.png", alt: "Mungi" },
-              { src: "/clients/navistar.png", alt: "Mahindra Navistar" },
-              { src: "/clients/rise.png", alt: "Mahindra Rise" },
-            ].map(({ src, alt }) => (
-              <motion.div 
-                key={alt} 
-                variants={fadeUp}
-                className="group flex items-center justify-center rounded-2xl border border-gray-200 bg-white px-6 py-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
+            {clientsList.map(({ src, alt }, idx) => (
+              <div 
+                key={`${alt}-${idx}`} 
+                className="w-44 md:w-56 h-28 shrink-0 flex items-center justify-center rounded-2xl bg-white px-6 py-5 cursor-pointer border border-gray-100 shadow-sm transition-all duration-300 hover:border-orange-200 hover:-translate-y-1 hover:shadow-md"
               >
                 <Image
                   src={src}
                   alt={alt}
                   width={180}
                   height={72}
-                  className="h-10 md:h-14 w-auto object-contain grayscale group-hover:grayscale-0 transition-all duration-300"
+                  className="max-h-full max-w-full object-contain"
                 />
-              </motion.div>
+              </div>
+            ))}
+          </motion.div>
+          <motion.div 
+            className="flex items-center gap-6 md:gap-10 pr-6 md:pr-10 w-max"
+            animate={{ x: ["0%", "-100%"] }}
+            transition={{ ease: "linear", duration: 25, repeat: Infinity }}
+          >
+            {clientsList.map(({ src, alt }, idx) => (
+              <div 
+                key={`dup-${alt}-${idx}`} 
+                className="w-44 md:w-56 h-28 shrink-0 flex items-center justify-center rounded-2xl bg-white px-6 py-5 cursor-pointer border border-gray-100 shadow-sm transition-all duration-300 hover:border-orange-200 hover:-translate-y-1 hover:shadow-md"
+              >
+                <Image
+                  src={src}
+                  alt={alt}
+                  width={180}
+                  height={72}
+                  className="max-h-full max-w-full object-contain"
+                />
+              </div>
             ))}
           </motion.div>
         </div>
@@ -646,7 +642,7 @@ export default function Home() {
             <h2 className="text-3xl md:text-[38px] font-black text-[#1b2a52] mb-2">
               Our Manufacturing Process
             </h2>
-            <p className="text-gray-500 text-sm mb-16">How we turn concepts into high-performance composites</p>
+            <p className="text-gray-500 text-base mb-16">How we turn concepts into high-performance composites</p>
           </motion.div>
 
           <div className="relative">
@@ -669,8 +665,8 @@ export default function Home() {
                   <div className={`w-20 h-20 bg-white rounded-full border-2 ${i === 0 ? "border-[#F27A22]" : "border-blue-200"} flex items-center justify-center mb-5 shadow-sm`}>
                     <span className="text-2xl font-black text-[#1b2a52]">{step.num}</span>
                   </div>
-                  <h4 className="text-xs font-black tracking-widest text-[#1b2a52] mb-2 uppercase">{step.title}</h4>
-                  <p className="text-gray-500 text-xs px-2">{step.desc}</p>
+                  <h4 className="text-sm font-black tracking-widest text-[#1b2a52] mb-2 uppercase">{step.title}</h4>
+                  <p className="text-gray-500 text-sm px-2">{step.desc}</p>
                 </motion.div>
               ))}
             </motion.div>
@@ -690,7 +686,7 @@ export default function Home() {
           <h2 className="text-3xl md:text-[40px] font-black text-white mb-4 leading-tight">
             Looking for High Performance FRP Components?
           </h2>
-          <p className="text-blue-200 text-sm md:text-base max-w-2xl mx-auto mb-10">
+          <p className="text-blue-200 text-base md:text-lg max-w-2xl mx-auto mb-10">
             Get in touch with our engineering team for custom quotes and technical feasibility studies.
           </p>
           <motion.button 
@@ -705,4 +701,3 @@ export default function Home() {
     </main>
   );
 }
-

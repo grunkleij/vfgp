@@ -54,7 +54,7 @@ export default function FeatureBar() {
                 <h3 className="text-[22px] font-black text-[#1b2a52] leading-none">
                   {feature.title}
                 </h3>
-                <p className="text-[13px] font-bold tracking-wide text-gray-800 uppercase mt-1.5">
+                <p className="text-sm md:text-base font-bold tracking-wide text-gray-800 uppercase mt-1.5">
                   {feature.subtitle}
                 </p>
               </div>

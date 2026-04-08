@@ -8,6 +8,7 @@ import Link from 'next/link'
 export default function NavBar() {
 
     const [open, setOpen] = useState(false)
+    const industriesHref = "/industries/automobile"
 
     return (
         <nav className='flex justify-between items-center px-3 sm:px-6 lg:px-12 py-4 relative'>
@@ -23,13 +24,13 @@ export default function NavBar() {
             <ul className='hidden md:flex gap-6 lg:gap-10 items-center text-[#282967] font-semibold text-sm lg:text-base'>
                 <li><Link href="/">Home</Link></li>
                 <li><Link href="/about_us">About Us</Link></li>
-                <li><Link href="/">Products</Link></li>
-                <li><Link href="/">Facilities</Link></li>
-                <li><Link href="/">Contact</Link></li>
+                <li><Link href="/product">Products</Link></li>
+                <li><Link href={industriesHref}>Industries</Link></li>
+                <li><Link href="/contact">Contact</Link></li>
             </ul>
 
             <div className='hidden lg:flex bg-[#282967] rounded-md text-white px-4 py-2 text-sm lg:text-base'>
-                <button>Get a Quote</button>
+                <Link href="/contact">Get a Quote</Link>
             </div>
 
             <div className='md:hidden'>
@@ -42,14 +43,14 @@ export default function NavBar() {
                 <div className='absolute top-full left-0 w-full bg-white shadow-md md:hidden'>
                     <ul className='flex flex-col items-center gap-4 py-4 text-[#282967] font-semibold'>
                         <li><Link href="/">Home</Link></li>
-                        <li><Link href="/">About Us</Link></li>
-                        <li><Link href="/">Products</Link></li>
-                        <li><Link href="/">Facilities</Link></li>
-                        <li><Link href="/">Contact</Link></li>
+                        <li><Link href="/about_us">About Us</Link></li>
+                        <li><Link href="/product">Products</Link></li>
+                        <li><Link href={industriesHref}>Industries</Link></li>
+                        <li><Link href="/contact">Contact</Link></li>
                         <li>
-                            <button className='bg-[#282967] text-white px-4 py-2 rounded'>
+                            <Link href="/contact" className='bg-[#282967] text-white px-4 py-2 rounded'>
                                 Get a Quote
-                            </button>
+                            </Link>
                         </li>
                     </ul>
                 </div>
