@@ -1,6 +1,8 @@
 import { Rocket, Eye, BadgeCheck, Gavel, Handshake, Lightbulb, Compass, Microscope, Sliders } from 'lucide-react'
 import React from 'react'
 import ClientsCarousel from '../components/AboutComponents/ClientsCarousel'
+import Link from 'next/link'
+import ContactPage from '../contact/page'
 
 export default function page() {
     return (
@@ -284,13 +286,13 @@ export default function page() {
                     </p>
 
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                        <button className="bg-[#282F5A] text-white px-8 py-3.5 rounded-md font-bold hover:bg-[#1b2a52] transition-colors w-full sm:w-auto">
+                        <Link href={"/contact"} className="bg-[#282F5A] text-white px-8 py-3.5 rounded-md font-bold hover:bg-[#1b2a52] transition-colors w-full sm:w-auto">
                             Contact Us Today
-                        </button>
+                        </Link>
 
-                        <button className="bg-white border border-[#282F5A]/40 text-[#282F5A] px-8 py-3.5 rounded-md font-bold hover:bg-gray-50 transition-colors shadow-sm w-full sm:w-auto">
+                        <Link href={"/product"} className="bg-white border border-[#282F5A]/40 text-[#282F5A] px-8 py-3.5 rounded-md font-bold hover:bg-gray-50 transition-colors shadow-sm w-full sm:w-auto">
                             View Product Catalog
-                        </button>
+                        </Link>
                     </div>
 
                 </div>

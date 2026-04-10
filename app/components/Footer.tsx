@@ -1,85 +1,102 @@
 import React from 'react';
-import { Share2, Mail, MapPin, Phone } from 'lucide-react';
+import { Share2, Mail, MapPin, Phone, ChevronRight } from 'lucide-react';
+import Link from 'next/link';
 
 export default function Footer() {
   return (
-    <footer className="w-full bg-[#2A2E5B] pt-20 pb-8">
+    <footer className="w-full bg-[#0c1221] pt-20 pb-8 border-t-[4px] border-[#F27A22]">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-8 mb-16">
+        
+        {/* Main Footer Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 mb-16">
           
-          <div className="md:col-span-5 lg:col-span-6">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="bg-white p-1 w-13 h-13 flex items-center justify-center">
+          {/* Column 1: Brand Info */}
+          <div className="md:col-span-2 lg:col-span-5">
+            <div className="flex items-center gap-4 mb-6">
+              <div className="bg-white p-1.5 w-14 h-14 flex items-center justify-center rounded-sm">
                 <img 
                   src="/logo.png" 
                   alt="VF Logo" 
                   className="w-full h-full object-contain"
                 />
               </div>
-              <h2 className="text-[#D98C21] font-black text-xl leading-tight tracking-wide">
+              <h2 className="text-[#F27A22] font-black text-xl md:text-2xl leading-tight tracking-wide">
                 VENKATESHWARA<br />
-                FIBREGLASS PRODUCTS
+                <span className="text-white text-lg md:text-xl">FIBREGLASS PRODUCTS</span>
               </h2>
             </div>
             
-            <p className="text-white text-base md:text-[17px] leading-relaxed mb-8 max-w-105">
-              Providing the global industrial sector with superior fiber reinforced plastic solutions for 30 years.
+            <p className="text-gray-400 text-sm md:text-base leading-relaxed mb-8 max-w-md">
+              Leading manufacturers of advanced FRP composites for Automobiles, Defence, and Engineering Industrial applications. Providing unmatched durability and performance.
             </p>
             
             <div className="flex gap-4">
-              <a href="#" className="w-11 h-11 rounded-full bg-[#3D426D] flex items-center justify-center text-[#D98C21] hover:bg-[#4A4F7D] transition-colors">
+              <a href="#" className="w-11 h-11 rounded-full bg-[#1b2a52] flex items-center justify-center text-[#F27A22] hover:bg-[#F27A22] hover:text-white transition-all duration-300">
                 <Share2 className="w-4 h-4" />
               </a>
-              <a href="#" className="w-11 h-11 rounded-full bg-[#3D426D] flex items-center justify-center text-[#D98C21] hover:bg-[#4A4F7D] transition-colors">
+              <a href="#" className="w-11 h-11 rounded-full bg-[#1b2a52] flex items-center justify-center text-[#F27A22] hover:bg-[#F27A22] hover:text-white transition-all duration-300">
                 <Mail className="w-4 h-4" />
               </a>
             </div>
           </div>
 
-          <div className="md:col-span-3 lg:col-span-3">
-            <h3 className="text-[#D98C21] font-bold text-[15px] tracking-widest uppercase mb-6">
+          {/* Column 2: Quick Links */}
+          <div className="md:col-span-1 lg:col-span-3 lg:pl-8">
+            <h3 className="text-[#F27A22] font-bold text-[15px] tracking-widest uppercase mb-6">
               QUICK LINKS
             </h3>
             <ul className="flex flex-col gap-4">
-              <li>
-                <a href="#" className="text-white hover:text-[#D98C21] transition-colors text-[15px]">
-                  About Us
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-white hover:text-[#D98C21] transition-colors text-[15px]">
-                  Case Studies
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-white hover:text-[#D98C21] transition-colors text-[15px]">
-                  Technical Data
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-white hover:text-[#D98C21] transition-colors text-[15px]">
-                  Request Quote
-                </a>
-              </li>
+              {[
+                { name: "Home", href: "/" },
+                { name: "About Us", href: "/about_us" },
+                { name: "Products", href: "/product" },
+                { name: "Industries", href: "/industries/automobile" },
+                { name: "Contact Us", href: "/contact" },
+              ].map((link) => (
+                <li key={link.name}>
+                  <Link 
+                    href={link.href} 
+                    className="text-gray-300 hover:text-[#F27A22] transition-colors text-[15px] flex items-center gap-2"
+                  >
+                    <ChevronRight className="w-4 h-4 text-[#F27A22]" />
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          <div className="md:col-span-4 lg:col-span-3">
-            <h3 className="text-[#D98C21] font-bold text-[15px] tracking-widest uppercase mb-6">
-              CONTACT
+          {/* Column 3: Contact Info */}
+          <div className="md:col-span-1 lg:col-span-4">
+            <h3 className="text-[#F27A22] font-bold text-[15px] tracking-widest uppercase mb-6">
+              CONTACT US
             </h3>
             <ul className="flex flex-col gap-6">
-              <li className="flex items-start gap-3">
-                <MapPin className="w-5 h-5 text-white shrink-0 mt-0.5" />
-                <span className="text-white text-[15px] leading-relaxed">
-                  1200 Composite Blvd, Industrial<br />
-                  Park, Houston, TX 77001
+              <li className="flex items-start gap-4">
+                <div className="bg-[#1b2a52] p-2.5 rounded-lg shrink-0 mt-0.5">
+                  <MapPin className="w-5 h-5 text-[#F27A22]" />
+                </div>
+                <span className="text-gray-300 text-[15px] leading-relaxed">
+                  Plot No 6, R.I.E, Zaheerabad,<br />
+                  Industrial Hub, Telangana, India
                 </span>
               </li>
-              <li className="flex items-center gap-3">
-                <Phone className="w-5 h-5 text-white shrink-0" />
-                <span className="text-white text-[15px]">
-                  +1 (800) 555-0199
+              
+              <li className="flex items-center gap-4">
+                <div className="bg-[#1b2a52] p-2.5 rounded-lg shrink-0">
+                  <Phone className="w-5 h-5 text-[#F27A22]" />
+                </div>
+                <span className="text-gray-300 text-[15px]">
+                  +91 98765 43210
+                </span>
+              </li>
+
+              <li className="flex items-center gap-4">
+                <div className="bg-[#1b2a52] p-2.5 rounded-lg shrink-0">
+                  <Mail className="w-5 h-5 text-[#F27A22]" />
+                </div>
+                <span className="text-gray-300 text-[15px]">
+                  info@vfgp.in
                 </span>
               </li>
             </ul>
@@ -87,11 +104,17 @@ export default function Footer() {
           
         </div>
 
-        <div className="border-t border-white/10 pt-8 flex items-center justify-center">
-          <p className="text-white/80 text-[14px]">
-            © 2024 FRP Manufacturing Co. All Rights Reserved.
+        {/* Bottom Copyright Bar */}
+        <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
+          <p className="text-gray-500 text-[14px]">
+            &copy; {new Date().getFullYear()} Venkateshwara Fibreglass Products. All Rights Reserved.
           </p>
+          <div className="flex gap-6">
+            <a href="#" className="text-gray-500 hover:text-white text-[14px] transition-colors">Privacy Policy</a>
+            <a href="#" className="text-gray-500 hover:text-white text-[14px] transition-colors">Terms of Service</a>
+          </div>
         </div>
+
       </div>
     </footer>
   );
