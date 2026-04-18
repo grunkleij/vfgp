@@ -359,36 +359,64 @@ export default function Page() {
       </section>
 
       {/* ─── LEADERSHIP TEAM ──────────────────────────────────── */}
-      <section className="w-full bg-white py-16 md:py-20" data-aos="fade-up">
+      <section className="w-full bg-[#DCE8F5] py-16 md:py-20" data-aos="fade-up">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
           <div className="text-center mb-10 md:mb-16" data-aos="fade-down">
             <h2 className="text-2xl sm:text-4xl md:text-[42px] font-black text-[#1b2a52] mb-3 md:mb-4 leading-tight">
               Leadership Team
             </h2>
             <div className="w-12 sm:w-16 h-1.5 bg-[#C47D34] mx-auto" />
+            <p className="mt-4 max-w-3xl mx-auto text-sm sm:text-base md:text-lg leading-relaxed text-[#1b2a52]/80 font-medium px-2">
+              You will find yourself working in a true partnership that results in an incredible experience, and an end product that is the best.
+            </p>
           </div>
 
-          <div
-            className="flex flex-col items-center justify-center text-center"
-            data-aos="zoom-in"
-            data-aos-delay="100"
-          >
-            <motion.div
-              className="w-48 sm:w-70 h-60 sm:h-85 rounded-2xl overflow-hidden mb-4 md:mb-6"
-              whileHover={{ scale: 1.02, transition: { duration: 0.3 } }}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start justify-items-center text-center">
+            <div
+              className="flex flex-col items-center justify-center"
+              data-aos="zoom-in"
+              data-aos-delay="100"
             >
-              <img
-                src="/about/chandu_ch.png"
-                alt="Chandu CH"
-                className="w-full h-full object-cover"
-              />
-            </motion.div>
-            <h3 className="text-xl sm:text-2xl font-bold text-[#1b2a52] mb-1">
-              Chandu CH
-            </h3>
-            <p className="text-[#1b2a52] font-medium text-sm sm:text-base">
-              Founder & President
-            </p>
+              <motion.div
+                className="w-48 sm:w-70 h-60 sm:h-85 rounded-2xl overflow-hidden mb-4 md:mb-6"
+                whileHover={{ scale: 1.02, transition: { duration: 0.3 } }}
+              >
+                <img
+                  src="/about/chandu_ch.png"
+                  alt="Chandu CH"
+                  className="w-full h-full object-cover"
+                />
+              </motion.div>
+              <h3 className="text-xl sm:text-2xl font-bold text-[#1b2a52] mb-1">
+                Chandu CH
+              </h3>
+              <p className="text-[#1b2a52] font-medium text-sm sm:text-base">
+                Founder & President
+              </p>
+            </div>
+
+            <div
+              className="flex flex-col items-center justify-center"
+              data-aos="zoom-in"
+              data-aos-delay="200"
+            >
+              <motion.div
+                className="w-48 sm:w-70 h-60 sm:h-85 rounded-2xl overflow-hidden mb-4 md:mb-6"
+                whileHover={{ scale: 1.02, transition: { duration: 0.3 } }}
+              >
+                <img
+                  src="/vicepresident.jpeg"
+                  alt="Rameshan KIV"
+                  className="w-full h-full object-cover"
+                />
+              </motion.div>
+              <h3 className="text-xl sm:text-2xl font-bold text-[#1b2a52] mb-1">
+                Rameshan KIV
+              </h3>
+              <p className="text-[#1b2a52] font-medium text-sm sm:text-base">
+                Vice President
+              </p>
+            </div>
           </div>
         </div>
       </section>
