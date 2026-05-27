@@ -18,6 +18,9 @@ import {
   Phone,
   User,
   MessageSquare,
+  TrendingUp,
+  Target,
+  Eye,
 } from "lucide-react";
 import { useState } from "react";
 import Link from "next/link";
@@ -214,12 +217,11 @@ export default function Home() {
               <span className="text-[#1b2a52]">Hyderabad – India.</span>
             </h2>
             <p className="text-gray-500 text-base leading-relaxed mb-8">
-              VENKATESHWARA FIBREGLASS PRODUCTS is a unit set up for
-              manufacturing FRP composites for Automobiles and other Engineering
-              Industrial applications. The unit has been promoted by dedicated,
-              young and technically experienced first-generation entrepreneurs.
-              VFG is located at Plot No 6, R.I.E, Zaheerabad — the heart of the
-              Industrial hub of Zaheerabad.
+              Venkateshwara Fibreglass Products (VFGP) is a premier manufacturer of
+              FRP composites for automotive and engineering industrial applications. Founded by a team of passionate and technically proficient entrepreneurs,
+              VFGP operates from Plot No. 6, R.I.E, Zaheerabad—the heart of Telangana’s
+              industrial corridor. Our commitment lies in delivering value-driven solutions
+              that meet stringent quality and performance benchmarks.
             </p>
             <ul className="space-y-3 mb-8">
               {[
@@ -395,6 +397,69 @@ export default function Home() {
               </motion.div>
             ))}
           </motion.div>
+        </div>
+      </section>
+
+     {/* ── MISSION & VISION — WHITE ───────────────────────────────────── */}
+      <section className="w-full bg-white py-12 md:py-16 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
+          
+          {/* Left Column: Heading & Vision */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={fadeRight}
+            className="flex flex-col h-full justify-center"
+          >
+            <div className="inline-flex items-center gap-3 bg-white rounded-xl px-4 py-3 shadow-sm border border-gray-200 mb-6 w-max">
+              <img src="/logo.png" alt="VFGP" className="h-10 w-auto" />
+              <span className="text-xs font-semibold text-[#1b2a52] tracking-wide uppercase">Venkateshwara Fibreglass Products</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl md:text-[42px] font-black text-[#1b2a52] leading-tight mb-8">
+              Excellence in FRP,<br className="hidden sm:block"/>Beyond Boundaries
+            </h2>
+            
+            <motion.div variants={fadeUp} className="bg-white border border-gray-200 rounded-2xl p-6 sm:p-7 shadow-sm w-full lg:max-w-[450px]">
+              <div className="w-11 h-11 bg-[#F27A22]/10 rounded-lg flex items-center justify-center mb-4">
+                <Eye className="w-5 h-5 text-[#F27A22]" />
+              </div>
+              <h4 className="font-bold text-[#1b2a52] text-lg mb-2">Vision</h4>
+              <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
+                To continuously strive for excellence and become a benchmark in the FRP industry across India and beyond.
+              </p>
+            </motion.div>
+          </motion.div>
+
+          {/* Right Column: Mission & Quality */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={staggerContainer}
+            className="flex flex-col gap-6 w-full lg:mt-16"
+          >
+            <motion.div variants={fadeUp} className="bg-white border border-gray-200 rounded-2xl p-6 sm:p-7 shadow-sm w-full lg:max-w-[450px]">
+              <div className="w-11 h-11 bg-[#F27A22]/10 rounded-lg flex items-center justify-center mb-4">
+                <Target className="w-5 h-5 text-[#F27A22]" />
+              </div>
+              <h4 className="font-bold text-[#1b2a52] text-lg mb-2">Mission</h4>
+              <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
+                To deliver high-quality products that seamlessly combine performance, cost-effectiveness, and reliability—building enduring relationships with both customers and suppliers.
+              </p>
+            </motion.div>
+
+            <motion.div variants={fadeUp} className="bg-[#F27A22] text-white rounded-2xl p-6 sm:p-7 shadow-sm w-full lg:max-w-[450px]">
+              <div className="w-11 h-11 bg-white/15 rounded-lg flex items-center justify-center mb-4">
+                <TrendingUp className="w-5 h-5 text-white" />
+              </div>
+              <h4 className="font-bold text-white text-lg mb-2">Highest standards of quality</h4>
+              <p className="text-white/90 text-sm sm:text-base leading-relaxed">
+                Driven by precision manufacturing and uncompromising QA.
+              </p>
+            </motion.div>
+          </motion.div>
+          
         </div>
       </section>
 
@@ -910,9 +975,9 @@ export default function Home() {
                         w-16 h-16 sm:w-20 sm:h-20 bg-white rounded-full border-2 flex items-center justify-center mb-3 sm:mb-5 shadow-sm
                         transition-all duration-300 ease-in-out
                         ${
-                          /* Mobile: always orange for step 0, rest blue */
-                          /* Desktop: orange if active (covered by hover), else blue */
-                          `lg:border-2 ${isActive ? "border-[#F27A22]" : "border-blue-200"}
+                        /* Mobile: always orange for step 0, rest blue */
+                        /* Desktop: orange if active (covered by hover), else blue */
+                        `lg:border-2 ${isActive ? "border-[#F27A22]" : "border-blue-200"}
                            max-lg:${i === 0 ? "border-[#F27A22]" : "border-blue-200"}`
                         }
                       `}
